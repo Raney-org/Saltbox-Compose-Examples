@@ -4,7 +4,7 @@ services:
   syncing-server-js:
     image: standardnotes/syncing-server-js
     container_name: syncing-server-js-standalone
-    depends_on:
+    depends_on: 
       - db
       - cache
     entrypoint: [
