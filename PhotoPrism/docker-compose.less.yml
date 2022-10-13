@@ -1,0 +1,67 @@
+version: '3.5'
+
+services:
+  photoprism:
+    image: photoprism/photoprism:latest
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    environment:
+      PHOTOPRISM_ADMIN_PASSWORD: "cPwf4Kx9K7Q8"      
+      PHOTOPRISM_AUTH_MODE: "password"               
+      PHOTOPRISM_SITE_URL: "https://photoprism.raneydazed.com"  
+      PHOTOPRISM_ORIGINALS_LIMIT: 5000               
+      PHOTOPRISM_HTTP_COMPRESSION: "gzip"            
+      PHOTOPRISM_LOG_LEVEL: "info"                   
+      PHOTOPRISM_READONLY: "false"                   
+      PHOTOPRISM_EXPERIMENTAL: "false"               
+      PHOTOPRISM_DISABLE_CHOWN: "false"              
+      PHOTOPRISM_DISABLE_WEBDAV: "false"             
+      PHOTOPRISM_DISABLE_SETTINGS: "false"           
+      PHOTOPRISM_DISABLE_TENSORFLOW: "false"         
+      PHOTOPRISM_DISABLE_FACES: "false"              
+      PHOTOPRISM_DISABLE_CLASSIFICATION: "false"     
+      PHOTOPRISM_DISABLE_RAW: "false"                
+      PHOTOPRISM_RAW_PRESETS: "false"                
+      PHOTOPRISM_JPEG_QUALITY: 85                    
+      PHOTOPRISM_DETECT_NSFW: "true"                 
+      PHOTOPRISM_UPLOAD_NSFW: "true"                 
+      PHOTOPRISM_DATABASE_DRIVER: "mysql"            
+      PHOTOPRISM_DATABASE_SERVER: "mariadb:3306"     
+      PHOTOPRISM_DATABASE_NAME: "photoprism"         
+      PHOTOPRISM_DATABASE_USER: "photoprism"         
+      PHOTOPRISM_DATABASE_PASSWORD: "photoprism12"   
+      PHOTOPRISM_SITE_CAPTION: "AI-Powered Photos App"
+      PHOTOPRISM_SITE_DESCRIPTION: "Trying out PhotoPrism!"              
+      PHOTOPRISM_SITE_AUTHOR: "Rane Danielsen"                     
+      PHOTOPRISM_INIT: "gpu tensorflow"
+      PHOTOPRISM_UID: 1000
+      PHOTOPRISM_GID: 1001
+    devices:
+      - "/dev/dri:/dev/dri"                         
+    working_dir: "/photoprism" # do not change or remove
+    networks:
+      - saltbox
+    labels:
+      traefik.enable: true
+      traefik.http.routers.photoprism-http.entrypoints: web
+      traefik.http.routers.photoprism-http.middlewares: globalHeaders@file,redirect-to-https,gzip
+      traefik.http.routers.photoprism-http.rule: Host(`photoprism.raneydazed.com`)
+      traefik.http.routers.photoprism-http.service: photoprism
+      traefik.http.routers.photoprism.entrypoints: websecure
+      traefik.http.routers.photoprism.middlewares: globalHeaders@file,secureHeaders@file
+      traefik.http.routers.photoprism.rule: Host(`photoprism.raneydazed.com`)
+      traefik.http.routers.photoprism.service: photoprism
+      traefik.http.routers.photoprism.tls.certresolver: cfdns
+      traefik.http.routers.photoprism.tls.options: securetls@file
+      traefik.http.services.photoprism.loadbalancer.server.port: 2342
+    volumes:
+      # "/host/folder:/photoprism/folder"                # Example
+      - "/opt/photoprism/:/photoprism/originals"               # Original media files (DO NOT REMOVE)
+     # - "/mnt/storage/photos:/photoprism/originals/shared" # *Additional* media folders can be mounted like this
+      - "/opt/photoprism/import:/import"                  # *Optional* base folder from which files can be imported to originals
+      - "/opt/photoprism:/photoprism/storage"                  # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
+      - /etc/localtime:/etc/localtime:ro
+networks:
+  saltbox:
+    external: true
