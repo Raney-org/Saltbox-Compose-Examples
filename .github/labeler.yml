@@ -1,14 +1,21 @@
-# Set your workflow to run on push events to the main and release/* branches
+# Add 'repo' label to any root file changes
+repo:
+- '*'
 
+# Add '@domain/core' label to any change within the 'core' package
+@domain/core:
+- package/core/*
+- package/core/**/*
 
-#on:
-#  push:
-#    branches:
-#    - main
+# Add 'test' label to any change to *.spec.js files within the source dir
+test:
+- src/**/*.spec.js
 
-# Set your workflow to run on pull_request events that target the main branch
+# Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+source:
+- any: ['src/**/*', '!src/docs/*']
 
-on:
-  pull_request:
-    branches:
-    - main
+# Add 'frontend` label to any change to *.js files as long as the `main.js` hasn't changed
+frontend:
+- any: ['src/**/*.js']
+  all: ['!src/main.js']
