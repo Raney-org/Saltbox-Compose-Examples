@@ -1,10 +1,10 @@
 # Set your workflow to run on push events to the main and release/* branches
 
 
-on:
-  push:
-    branches:
-    - main
+#on:
+#  push:
+#    branches:
+#    - main
 
 # Set your workflow to run on pull_request events that target the main branch
 
