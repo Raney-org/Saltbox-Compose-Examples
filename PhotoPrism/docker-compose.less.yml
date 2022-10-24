@@ -7,9 +7,9 @@ services:
       - seccomp:unconfined
       - apparmor:unconfined
     environment:
-      PHOTOPRISM_ADMIN_PASSWORD: "cPwf4Kx9K7Q8"      
+      PHOTOPRISM_ADMIN_PASSWORD: "password_goes_here"      
       PHOTOPRISM_AUTH_MODE: "password"               
-      PHOTOPRISM_SITE_URL: "https://photoprism.raneydazed.com"  
+      PHOTOPRISM_SITE_URL: "https://photoprism.domain.com"  
       PHOTOPRISM_ORIGINALS_LIMIT: 5000               
       PHOTOPRISM_HTTP_COMPRESSION: "gzip"            
       PHOTOPRISM_LOG_LEVEL: "info"                   
@@ -33,7 +33,7 @@ services:
       PHOTOPRISM_DATABASE_PASSWORD: "photoprism12"   
       PHOTOPRISM_SITE_CAPTION: "AI-Powered Photos App"
       PHOTOPRISM_SITE_DESCRIPTION: "Trying out PhotoPrism!"              
-      PHOTOPRISM_SITE_AUTHOR: "Rane Danielsen"                     
+      PHOTOPRISM_SITE_AUTHOR: "your damned name"                     
       PHOTOPRISM_INIT: "gpu tensorflow"
       PHOTOPRISM_UID: 1000
       PHOTOPRISM_GID: 1001
