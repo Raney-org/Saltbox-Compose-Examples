@@ -1,8 +1,0 @@
-{
-	"folders": [
-		{
-			"uri": "vscode-remote://ssh-remote+saltbox/opt"
-		}
-	],
-	"settings": {}
-}
