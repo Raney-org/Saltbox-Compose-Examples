@@ -46,9 +46,9 @@ services:
     #ports:
     #  - "2342:2342" # HTTP port (host:container)
     environment:
-      PHOTOPRISM_ADMIN_PASSWORD: "cPwf4Kx9K7Q8"      # INITIAL PASSWORD FOR "admin" USER, MINIMUM 8 CHARACTERS
+      PHOTOPRISM_ADMIN_PASSWORD: "your_password_here"      # INITIAL PASSWORD FOR "admin" USER, MINIMUM 8 CHARACTERS
       PHOTOPRISM_AUTH_MODE: "password"               # authentication mode (public, password)
-      PHOTOPRISM_SITE_URL: "https://photoprism.raneydazed.com"  # public server URL incl http:// or https:// and /path, :port is optional
+      PHOTOPRISM_SITE_URL: "https://photoprism.domain.com"  # public server URL incl http:// or https:// and /path, :port is optional
       PHOTOPRISM_ORIGINALS_LIMIT: 5000               # file size limit for originals in MB (increase for high-res video)
       PHOTOPRISM_HTTP_COMPRESSION: "gzip"            # improves transfer speed and bandwidth utilization (none or gzip)
       PHOTOPRISM_LOG_LEVEL: "info"                   # log level: trace, debug, info, warning, error, fatal, or panic
@@ -72,7 +72,7 @@ services:
       PHOTOPRISM_DATABASE_PASSWORD: "photoprism12"   # MariaDB or MySQL database user password
       PHOTOPRISM_SITE_CAPTION: "AI-Powered Photos App"
       PHOTOPRISM_SITE_DESCRIPTION: "Trying out PhotoPrism!"                # meta site description
-      PHOTOPRISM_SITE_AUTHOR: "Rane Danielsen"                     # meta site author
+      PHOTOPRISM_SITE_AUTHOR: "your name"                     # meta site author
       ## Run/install on first startup (options: update gpu tensorflow davfs clitools clean):
       PHOTOPRISM_INIT: "gpu tensorflow"
       ## Hardware Video Transcoding (for sponsors only due to high maintenance and support costs):
