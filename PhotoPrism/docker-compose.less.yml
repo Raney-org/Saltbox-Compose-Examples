@@ -46,11 +46,11 @@ services:
       traefik.enable: true
       traefik.http.routers.photoprism-http.entrypoints: web
       traefik.http.routers.photoprism-http.middlewares: globalHeaders@file,redirect-to-https,gzip
-      traefik.http.routers.photoprism-http.rule: Host(`photoprism.raneydazed.com`)
+      traefik.http.routers.photoprism-http.rule: Host(`photoprism.domain.com`)
       traefik.http.routers.photoprism-http.service: photoprism
       traefik.http.routers.photoprism.entrypoints: websecure
       traefik.http.routers.photoprism.middlewares: globalHeaders@file,secureHeaders@file
-      traefik.http.routers.photoprism.rule: Host(`photoprism.raneydazed.com`)
+      traefik.http.routers.photoprism.rule: Host(`photoprism.domain.com`)
       traefik.http.routers.photoprism.service: photoprism
       traefik.http.routers.photoprism.tls.certresolver: cfdns
       traefik.http.routers.photoprism.tls.options: securetls@file
