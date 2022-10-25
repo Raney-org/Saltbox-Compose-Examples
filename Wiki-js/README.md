@@ -1,11 +1,11 @@
-# This compose file is made assuming you have an existing postgres insstance on your server. 
+# This [compose](https://github.com/bad-CHAIR/Saltbox-Compose-Examples/blob/main/Wiki-js/docker-compose.yml) file is made assuming you have an existing postgres instance on your server. 
 
 If you don't, run:
 
 ```yaml
 sb install postgres
 ```
-The default user i believe to be saltbox, it could be your server user from `accounts.yml`
+The default user I believe to be saltbox, it could be your server user from `accounts.yml`
 
 # To administrate your PG instance, install PGAdmin. 
 
