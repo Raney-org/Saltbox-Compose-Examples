@@ -16,11 +16,11 @@ services:
       traefik.enable: true
       traefik.http.routers.codex-http.entrypoints: web
       traefik.http.routers.codex-http.middlewares: globalHeaders@file,redirect-to-https,gzip
-      traefik.http.routers.codex-http.rule: Host(`codex.ranevm.com`)
+      traefik.http.routers.codex-http.rule: Host(`codex.domain.com`)
       traefik.http.routers.codex-http.service: codex
       traefik.http.routers.codex.entrypoints: websecure
       traefik.http.routers.codex.middlewares: globalHeaders@file,secureHeaders@file
-      traefik.http.routers.codex.rule: Host(`codex.ranevm.com`)
+      traefik.http.routers.codex.rule: Host(`codex.domain.com`)
       traefik.http.routers.codex.service: codex
       traefik.http.routers.codex.tls.certresolver: cfdns
       traefik.http.routers.codex.tls.options: securetls@file
