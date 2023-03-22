@@ -1,0 +1,34 @@
+version: "3"
+services:
+  codex:
+    restart: unless-stopped
+    container_name: codex
+    image: docker.io/ajslater/codex
+    hostname: codex
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=America/Chicago
+    networks:
+      - saltbox
+    labels:
+      com.github.saltbox.saltbox_managed: true 
+      traefik.enable: true
+      traefik.http.routers.codex-http.entrypoints: web
+      traefik.http.routers.codex-http.middlewares: globalHeaders@file,redirect-to-https,gzip
+      traefik.http.routers.codex-http.rule: Host(`codex.ranevm.com`)
+      traefik.http.routers.codex-http.service: codex
+      traefik.http.routers.codex.entrypoints: websecure
+      traefik.http.routers.codex.middlewares: globalHeaders@file,secureHeaders@file
+      traefik.http.routers.codex.rule: Host(`codex.ranevm.com`)
+      traefik.http.routers.codex.service: codex
+      traefik.http.routers.codex.tls.certresolver: cfdns
+      traefik.http.routers.codex.tls.options: securetls@file
+      traefik.http.services.codex.loadbalancer.server.port: 9810
+    volumes:
+      - /opt/codex:/config
+      - /mnt/unionfs/Media/Comics:/comics:ro
+      - /etc/localtime:/etc/localtime:ro
+networks:
+  saltbox:
+    external: true
